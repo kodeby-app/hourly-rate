@@ -1,42 +1,42 @@
 :root {
-  --bg: #f2f6f5;
+  --bg: #f4f3fb;
   --surface: #ffffff;
-  --text: #15241f;
-  --muted: #5a6b66;
-  --border: #d6e0dd;
-  --accent: #0f8a6a;
+  --text: #191733;
+  --muted: #5e5c7a;
+  --border: #dddaee;
+  --accent: #6b46e5;
   --accent-text: #ffffff;
-  --accent-soft: #e2f4ee;
+  --accent-soft: #eee9ff;
   --danger: #c53030;
-  --warn: #9a5b00;
-  --warn-soft: #fff3dc;
-  --c-takeHome: #0f8a6a;
-  --c-tax: #8a97b0;
-  --c-pension: #5b7fd6;
-  --c-costs: #e0a03a;
-  --c-margin: #b46ad1;
+  --warn: #9a4a12;
+  --warn-soft: #fff0e6;
+  --c-takeHome: #6b46e5;
+  --c-tax: #9a9fb8;
+  --c-pension: #248bff;
+  --c-costs: #ff8358;
+  --c-margin: #e0438f;
   --radius: 10px;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0c1614;
-    --surface: #13211e;
-    --text: #e3eeea;
-    --muted: #93a8a1;
-    --border: #263833;
-    --accent: #3fcf9f;
-    --accent-text: #0c1614;
-    --accent-soft: #173a30;
+    --bg: #070e1f;
+    --surface: #0e1830;
+    --text: #eef1ff;
+    --muted: #9ea8cf;
+    --border: #22305a;
+    --accent: #9d82ff;
+    --accent-text: #0a0f22;
+    --accent-soft: #241d4d;
     --danger: #ff7b7b;
-    --warn: #ffc56b;
-    --warn-soft: #3a2c12;
-    --c-takeHome: #3fcf9f;
-    --c-tax: #6e7b94;
-    --c-pension: #7c9cf0;
-    --c-costs: #f0b552;
-    --c-margin: #c98be0;
+    --warn: #ffb68f;
+    --warn-soft: #33201c;
+    --c-takeHome: #9d82ff;
+    --c-tax: #5d6789;
+    --c-pension: #3d9bff;
+    --c-costs: #ff8358;
+    --c-margin: #f24da1;
   }
 }
 
@@ -228,7 +228,7 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: -1
 @page { size: A4; margin: 18mm; }
 
 @media print {
-  :root { --bg: #f3f6f5; --surface: #fff; --text: #15241f; --muted: #5a6b66; --border: #d6e0dd; --accent: #0f8a6a; --accent-soft: #e2f4ee; --warn-soft: #fff3dc; --warn: #9a5b00; }
+  :root { --bg: #f4f3fb; --surface: #fff; --text: #191733; --muted: #5e5c7a; --border: #dddaee; --accent: #6b46e5; --accent-soft: #eee9ff; --warn-soft: #fff0e6; --warn: #9a4a12; --c-takeHome: #6b46e5; --c-tax: #9a9fb8; --c-pension: #248bff; --c-costs: #ff8358; --c-margin: #e0438f; }
   body { background: #fff; }
   .no-print { display: none !important; }
   .print-only { display: block; }
