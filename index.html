@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hourly Rate Calculator</title>
+  <meta name="description" content="Find the hourly rate you need as a freelancer. Free, no sign-up, and nothing leaves your device.">
+  <meta property="og:title" content="Hourly Rate Calculator">
+  <meta property="og:description" content="Find the hourly rate you need as a freelancer. Free, no sign-up, and nothing leaves your device.">
+  <meta property="og:image" content="https://rate.kodeby.app/screenshot.png">
+  <meta property="og:url" content="https://rate.kodeby.app">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar no-print">
+    <div class="brand">
+      <img src="favicon.svg" alt="" width="28" height="28">
+      <div>
+        <strong data-i18n="appName">Hourly Rate Calculator</strong>
+        <span class="tagline" data-i18n="tagline">Free. No sign-up. Nothing leaves your browser.</span>
+      </div>
+    </div>
+    <nav class="actions">
+      <button type="button" id="btn-share" data-i18n="share">Copy link</button>
+      <button type="button" id="btn-reset" data-i18n="reset">Start over</button>
+      <button type="button" id="btn-print" class="primary" data-i18n="download">Download PDF</button>
+      <select id="lang" aria-label="Language">
+        <option value="en">English</option>
+        <option value="nb">Norsk</option>
+      </select>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <form id="editor" class="editor no-print" autocomplete="off" novalidate>
+      <section class="card">
+        <h2><span data-i18n="incomeTitle">1. What you want to earn</span></h2>
+        <div class="grid">
+          <label><span data-i18n="incomeMode">I am entering</span>
+            <select data-bind="incomeMode">
+              <option value="gross" data-i18n="mode_gross">Yearly salary before tax</option>
+              <option value="net" data-i18n="mode_net">Yearly take-home pay after tax</option>
+            </select>
+          </label>
+          <label><span data-i18n="income">Amount per year</span><input inputmode="decimal" data-bind="income" data-num></label>
+          <label><span data-i18n="taxRate">Estimated tax on your salary (%)</span><input inputmode="decimal" data-bind="taxRate" data-num></label>
+          <label><span data-i18n="pension">Pension savings (% of salary)</span><input inputmode="decimal" data-bind="pension" data-num></label>
+          <label><span data-i18n="currency">Currency</span>
+            <select data-bind="currency">
+              <option>NOK</option><option>SEK</option><option>DKK</option><option>EUR</option>
+              <option>USD</option><option>GBP</option><option>CHF</option><option>PLN</option>
+              <option>CAD</option><option>AUD</option>
+            </select>
+          </label>
+        </div>
+        <p class="hint" data-i18n="taxHint">Tax depends on your country and situation. Use a rough average, or ask your accountant. This is an estimate, not tax advice.</p>
+      </section>
+
+      <section class="card">
+        <h2><span data-i18n="timeTitle">2. Your working time</span></h2>
+        <div class="grid">
+          <label><span data-i18n="hoursPerDay">Hours per working day</span><input inputmode="decimal" data-bind="hoursPerDay" data-num></label>
+          <label><span data-i18n="vacationWeeks">Weeks of holiday</span><input inputmode="decimal" data-bind="vacationWeeks" data-num></label>
+          <label><span data-i18n="holidayDays">Public holidays (days)</span><input inputmode="decimal" data-bind="holidayDays" data-num></label>
+          <label><span data-i18n="sickDays">Sick days and buffer (days)</span><input inputmode="decimal" data-bind="sickDays" data-num></label>
+          <label class="wide range"><span><span data-i18n="billable">Share of your time you can bill</span> <strong id="billable-out"></strong></span>
+            <input type="range" min="10" max="100" step="5" data-bind="billable" data-num>
+          </label>
+        </div>
+        <p class="hint" data-i18n="billableHint">Selling, admin, email and learning take time no client pays for. Many freelancers bill 60–75 % of their working hours.</p>
+      </section>
+
+      <section class="card">
+        <h2><span data-i18n="costTitle">3. Business costs</span> <small data-i18n="costHint">Everything the business pays for in a year</small></h2>
+        <div class="items-head" aria-hidden="true">
+          <span data-i18n="costName">Cost</span>
+          <span data-i18n="costAmount">Amount</span>
+          <span data-i18n="costPer">Per</span>
+          <span class="right" data-i18n="perYear">Per year</span>
+          <span></span>
+        </div>
+        <div id="costs"></div>
+        <button type="button" id="btn-add-cost" class="ghost" data-i18n="addCost">+ Add cost</button>
+      </section>
+
+      <section class="card">
+        <h2><span data-i18n="extraTitle">4. Safety and price</span></h2>
+        <div class="grid">
+          <label><span data-i18n="buffer">Profit and safety margin (%)</span><input inputmode="decimal" data-bind="buffer" data-num></label>
+          <label><span data-i18n="vatRate">VAT you add to the price (%)</span><input inputmode="decimal" data-bind="vatRate" data-num></label>
+          <label><span data-i18n="checkRate">Test a rate you have in mind (per hour)</span><input inputmode="decimal" data-bind="checkRate" data-num data-i18n-ph="checkRatePh"></label>
+        </div>
+        <p class="hint" data-i18n="bufferHint">A margin covers quiet months, late payments and a little savings for the business. 10–20 % is common.</p>
+      </section>
+    </form>
+
+    <aside class="result-wrap">
+      <article id="result" class="result card" aria-live="polite"></article>
+    </aside>
+  </main>
+
+  <footer class="site-footer no-print">
+    <span data-i18n="privacy">Everything you type stays in this browser. There is no server, no account and no tracking.</span>
+    <span>· <span data-i18n="madeBy">An example app by the Kodeby team.</span> <a href="https://kodeby.app" rel="noopener">kodeby.app</a> · <a href="https://github.com/kodeby-app/hourly-rate" rel="noopener" data-i18n="source">Source code</a></span>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
