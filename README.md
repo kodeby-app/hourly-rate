@@ -31,7 +31,7 @@ hourly rate     = needed per year ÷ billable hours, rounded up to an easy price
 
 Everything is stored in your browser's local storage. There is no server, no account, no analytics and no cookies.
 A shared link carries the numbers in the part after `#`, which browsers never send to a server.
-The Content Security Policy in `vercel.json` blocks all network requests from the page (`connect-src 'none'`).
+The Content Security Policy in `vercel.json` blocks all network requests from the page (`connect-src 'none'`). Only kodeby.app may show the page in a frame, for the "Try it here" demo on its app page.
 
 ## Run locally
 

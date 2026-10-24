@@ -185,7 +185,8 @@ function save() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch {
-    if (!save.warned) { save.warned = true; alert(t('storageFull')); }
+    // Inside the Kodeby app page the browser may block storage; the calculator still works without it.
+    if (!save.warned && window.top === window) { save.warned = true; alert(t('storageFull')); }
   }
 }
 
